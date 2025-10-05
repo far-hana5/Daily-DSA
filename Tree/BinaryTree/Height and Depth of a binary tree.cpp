@@ -62,38 +62,25 @@ Node* inputTree(){
         }
         return root;
     }
-int sum(Node* root){
-    if(root==NULL)return 0;
 
-    if(root->left==NULL && root->right==NULL){
-        return 0;
-    }
-    return root->val+sum(root->left)+sum(root->right);
+int maxHeight(Node* root){
+if(root==NULL)return 0;
+
+if(root->left==NULL && root->right==NULL)return 0;
+
+int l=maxHeight(root->left);
+int r=maxHeight(root->right);
+
+return max(l,r)+1;
+
 }
 
-int countNode(Node* root){
-    if(root==NULL)return 0;
-    int l=countNode(root->left);
-    int r=countNode(root->right);
-    return l+r+1;
-}
-
-int countLeafNode(Node* root){
-    if(root==NULL)return 0;
-
-      if(root->left==NULL && root->right==NULL){
-        return 1;
-    }
-    int l=countNode(root->left);
-    int r=countNode(root->right);
-    return l+r;
-}
 
 
 int main()
 {
 
 Node* root=inputTree();
-cout<<sum(root)<<endl;
+
     return 0;
 }
